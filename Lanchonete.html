@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aula 7</title>
+		<meta charset="utf-8">
+		<link id ="estilo" rel="stylesheet" type="text/css" href="style2.css">
+	</head>
+	<body>
+	  	<header>
+		<img src="lanche.jpg" width="250" height="180"/>
+			  <h1>Lanchonete MacScript</h1>  
+		 </header>
+	
+<br><br><br>
+
+		<section>
+
+			<div class="back_form">
+				<form action="" method="POST">
+					<fieldset>
+						<legend><h2>Calculadora Lanchonete</h2></legend>
+						Lanches: <br>
+						<select id="Lanches">
+							<option selected value="0">Selecione um Salgado</option>
+							<option value="1">MacBacon  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$:12,50</option>
+							<option value="2">MacBurguer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$:10,50</option>
+							<option value="3">MacFrango &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$:11,60</option>
+							<option value="4">MacVegetariano &nbsp;R$:13,00</option>
+						</select>
+						<br><br>
+						Bebidas: <br>
+						<select id="Bebidas">
+							<option selected value="0">Selecione uma bebida</option>
+							<option value="1">Refrigerante &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$:5,00</option>
+							<option value="2">Suco &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$:5,50</option>
+							<option value="3">Cerveja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;R$:5,60</option>
+							<option value="4">Agua &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$:2,00</option>
+						</select>
+						<div class="desconto">
+							<br><br>
+						Desconto para estudante? <br>
+						<input type="radio" name="desconto" value="Sim"> Sim
+						<input type="radio" name="desconto" value="Nao"> Não
+						<br>
+						 <br>	
+						</div>	
+						<div id="desconto">
+						<input type="checkbox" id="viagem" name="viagem" value="viagem"> Embalagem para viagem? <br>
+						<br>
+						</div>
+						<div id="calcular">
+						<input type="button" onclick="calcular()" value="Calcular">
+					    </div>	
+					</fieldset>			
+				
+
+				</form>
+			</div>
+				
+		</section>
+
+	<script type="text/javascript">
+		
+
+function calcular() {
+	var valorSal = [12.50, 10.50, 11.60, 13.00]; // Definindo preço dos salgados
+	var valorBeb = [5.00, 5.50, 5.60, 2.00];     // Definindo preço das bebidas
+
+	var res1, res2, restotal, i, x;
+
+  	var a = document.getElementById('Lanches').value;
+  	var b = document.getElementById('Bebidas').value;
+  	parseInt(a);   //Passando valores para Int
+  	parseInt(b);
+
+	  for (i=1; i<5; i++) {      // For para identificar o salgado selecionado e associar ao seu preço, respectivamente
+		  if (a == i) {
+				res1 = valorSal[i-1];
+			 }
+		 else if (a == 0){ res1 = 0; alert("Escolha um salgado!"); break; }
+
+	  }
+
+	  for (x=1; x<5; x++) {     // For para identificar a bebida selecionada e associar ao seu preço, respectivamente
+	  if (b == x) {
+		 res2 = valorBeb[x-1];
+		}
+		else if (b == 0){ res2 = 0; alert("Escolha uma bebida!"); break; }
+
+	   } 
+
+		
+          restotal = res1+res2;    
+
+	   
+
+                var student = document.getElementsByName('desconto');     //*************************************
+                if(student[0].checked){                                   //*************************************
+                  restotal = restotal - ((5/100)*restotal);               //*************************************
+                  restotal = parseFloat(restotal.toFixed(2));
+               } else if (student[1].checked) {                           //*Verifica os checkboxes e dá desconto
+                restotal = restotal;                                      //*************************************
+               } else {                                                   //*************************************
+                alert("Não foi selecionado a opção de desconto"); 		  //*************************************
+               }
+
+
+
+
+
+               var trip = document.getElementById('viagem');                //****************************************
+               if (trip.checked){                                           //****************************************
+                   restotal +=  1.5;                                         //***Se for para viagem, adiciona valor***
+                  restotal = parseFloat(restotal.toFixed(2));
+                   alert("O valor total da compra é R$: " + restotal); //****************************************
+                } else {                                                    //****************************************
+                 alert("O valor total da compra é R$: " + restotal);   //****************************************
+               }
+          
+    
+ 	 }
+
+
+		</script>
+
+
+
+	</body>
+</html>
